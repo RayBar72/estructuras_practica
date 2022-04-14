@@ -1,0 +1,13 @@
+Importing function:
+	>>> add_integer = __import__('0-add_integer').add_integer
+
+Regualar test:
+	>>> add_integer(2, 4)
+	6
+
+Inter casting:
+	>>> add_integer("nena")
+	Traceback (most recent call last):
+	...
+	TypeError: a must be an integer
+
