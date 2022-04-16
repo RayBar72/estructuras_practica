@@ -76,3 +76,26 @@ class Rectangle(Base):
 
     def __str__(self):
         return "[{}] ({}) {}/{} - {}/{}".format(__class__.__name__, self.id, self.x, self.y, self.width, self.height)
+
+    def update(self, *args, **kwargs):
+        if self.__class__.__name__ == "Square":
+            atrribs = ["id", "width", "height", "x", "y"]
+        elif self.__class__.__name__ == "Rectangle":
+            atrribs = ["id", "size", "x", "y"]
+        i = 0
+        if args:
+            for arg in args:
+                setattr(self, atrribs[i], arg)
+                i += 1
+        elif kwargs:
+            for k, v in kwargs.items():
+                for at in atrribs:
+                    if at == k:
+                        setattr(self, k, v)
+
+    def to_dictionary(self):
+        if self.__class__.__name__ == "Square":
+            rp ={"id": self.id, "size": self.width, "x": self.x, "y": self.y}
+        elif self.__class__.__name__ == "Rectangle":
+            rp ={"id": self.id, "width": self.width, "height": self.height, "x": self.x, "y": self.y}
+        return rp
